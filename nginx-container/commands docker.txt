@@ -1,0 +1,5 @@
+#Build no container
+sudo docker build -f Dockerfile -t otussolutions/otus .
+
+#Executar container
+sudo docker run --name otus -v /var/www/html:/usr/share/nginx/html -v /var/www/html/ssl:/etc/nginx/ssl -p 80:80 -d otussolutions/otus
