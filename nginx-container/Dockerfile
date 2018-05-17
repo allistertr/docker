@@ -8,7 +8,7 @@ COPY certificate.crt /etc/nginx/ssl/certificate.crt
 COPY localhost.conf /etc/nginx/sites-enabled/localhost.conf
 # COPY otus.dev.ccem.ufrgs.br.conf /etc/nginx/sites-enabled/
 # COPY studio.dev.ccem.ufrgs.br.conf /etc/nginx/sites-enabled/
-COPY domain.dev.ccem.ufrgs.br.conf /etc/nginx/sites-enabled/
+COPY otus-domain.conf /etc/nginx/sites-enabled/
 COPY nginx.conf /etc/nginx/nginx.conf:ro
 # COPY api-domain.dev.ccem.ufrgs.br.conf /etc/nginx/sites-enabled/api-domain.dev.ccem.ufrgs.br.conf
 # COPY api-otus.dev.ccem.ufrgs.br.conf /etc/nginx/sites-enabled/api-otus.dev.ccem.ufrgs.br.conf
