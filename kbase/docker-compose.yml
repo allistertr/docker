@@ -1,0 +1,41 @@
+version: '3'
+volumes:
+  dados:
+networks:
+  otus-api:
+  otus-front:
+  kbase:
+services:
+  mongodb_server:
+    image: mongo:3.6.2
+    container_name: mongodb_server
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ${DATA-./mongodb/mongoData/}:/data/db/
+      - ${MONGO_CONF_PATH-./mongodb/mongod.conf}:/etc/mongo.conf
+      - ./mongodb/kbase-initial-script.js:/docker-entrypoint-initdb.d/initdb.js
+    networks:
+      - kbase
+    ports:
+      - 27017:27017
+    command:
+      - '--auth'
+      - '-f'
+      - '/etc/mongo.conf'
+  postgres_server:
+    image: postgres:9.6
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: 'kbase'
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'admin'
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
